@@ -7,6 +7,7 @@ import { KeepTrackPlugin } from '../KeepTrackPlugin';
 
 export class TrainingPlugin extends KeepTrackPlugin {
   readonly id = 'TrainingPlugin';
+  protected dependencies_ = [];
 
   bottomIconImg = helpPng;
   bottomIconLabel = 'Training';
