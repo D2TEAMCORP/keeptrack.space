@@ -4,28 +4,111 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Training</title>
-    <link rel="stylesheet" href="/css/materialize.css" />
-    <link rel="stylesheet" href="/css/style.css" />
     <style>
-      body { padding: 12px; }
-      .course-list { margin-bottom: 16px; }
-      .lesson { display: none; }
-      .lesson.active { display: block; }
-      .exercise { margin-top: 12px; padding: 12px; border: 1px solid var(--color-dark-border); border-radius: 4px; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      h5 {
+        color: #fff;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+      h6 {
+        color: #fff;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      .course-list {
+        margin-bottom: 20px;
+      }
+      select {
+        width: 100%;
+        padding: 10px;
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        border: 1px solid #555;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      .lesson {
+        display: none;
+      }
+      .lesson.active {
+        display: block;
+      }
+      .exercise {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+      }
+      .exercise b {
+        color: #4a9eff;
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        border: 1px solid #555;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #4a9eff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #3a8eef;
+      }
+      #q1-result, #q2-result, #q3-result {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+        min-height: 20px;
+      }
+      p {
+        margin-bottom: 10px;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h5>Training</h5>
       <div class="course-list">
-        <div class="input-field col s12">
-          <select id="course-select">
-            <option value="intro" selected>Introduction to KeepTrack</option>
-            <option value="sensors">Sensors and FOV</option>
-            <option value="orbits">Orbits and Timelines</option>
-          </select>
-          <label>Course</label>
-        </div>
+        <select id="course-select">
+          <option value="intro" selected>Introduction to KeepTrack</option>
+          <option value="sensors">Sensors and FOV</option>
+          <option value="orbits">Orbits and Timelines</option>
+        </select>
       </div>
 
       <div id="lesson-intro" class="lesson active">
@@ -34,8 +117,8 @@
         <div class="exercise">
           <b>Exercise:</b>
           <p>Which key toggles the help menu?</p>
-          <div class="input-field"><input id="q1" type="text" placeholder="Your answer" /></div>
-          <button id="q1-submit" class="btn btn-ui">Check</button>
+          <input id="q1" type="text" placeholder="Your answer" />
+          <button id="q1-submit">Check</button>
           <p id="q1-result"></p>
         </div>
       </div>
@@ -46,8 +129,8 @@
         <div class="exercise">
           <b>Exercise:</b>
           <p>Name the menu that shows look angles.</p>
-          <div class="input-field"><input id="q2" type="text" placeholder="Your answer" /></div>
-          <button id="q2-submit" class="btn btn-ui">Check</button>
+          <input id="q2" type="text" placeholder="Your answer" />
+          <button id="q2-submit">Check</button>
           <p id="q2-result"></p>
         </div>
       </div>
@@ -58,17 +141,71 @@
         <div class="exercise">
           <b>Exercise:</b>
           <p>Which key toggles satellite orbits?</p>
-          <div class="input-field"><input id="q3" type="text" placeholder="Your answer" /></div>
-          <button id="q3-submit" class="btn btn-ui">Check</button>
+          <input id="q3" type="text" placeholder="Your answer" />
+          <button id="q3-submit">Check</button>
           <p id="q3-result"></p>
         </div>
       </div>
     </div>
 
-    <script src="/js/materialize.min.js"></script>
-    <script src="./app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const courseSelect = document.getElementById('course-select');
+        const lessons = {
+          intro: document.getElementById('lesson-intro'),
+          sensors: document.getElementById('lesson-sensors'),
+          orbits: document.getElementById('lesson-orbits'),
+        };
+
+        const showLesson = (key) => {
+          Object.values(lessons).forEach((el) => el.classList.remove('active'));
+          (lessons[key] || lessons.intro).classList.add('active');
+        };
+
+        courseSelect.addEventListener('change', (e) => {
+          showLesson(e.target.value);
+        });
+
+        // Simple answer checks
+        document.getElementById('q1-submit').addEventListener('click', () => {
+          const val = (document.getElementById('q1').value || '').toLowerCase();
+          const resultEl = document.getElementById('q1-result');
+          if (val.includes('shift') && (val.includes('f1') || val.includes('f 1'))) {
+            resultEl.textContent = 'Correct: Shift + F1 opens help.';
+            resultEl.style.color = '#4caf50';
+          } else {
+            resultEl.textContent = 'Hint: Check the splash tips about help.';
+            resultEl.style.color = '#ff9800';
+          }
+        });
+
+        document.getElementById('q2-submit').addEventListener('click', () => {
+          const val = (document.getElementById('q2').value || '').toLowerCase();
+          const resultEl = document.getElementById('q2-result');
+          if (val.includes('look') && val.includes('angles')) {
+            resultEl.textContent = 'Correct: Look Angles.';
+            resultEl.style.color = '#4caf50';
+          } else {
+            resultEl.textContent = 'Hint: Explore the bottom menus related to sensors.';
+            resultEl.style.color = '#ff9800';
+          }
+        });
+
+        document.getElementById('q3-submit').addEventListener('click', () => {
+          const val = (document.getElementById('q3').value || '').toLowerCase();
+          const resultEl = document.getElementById('q3-result');
+          if (val === 'l' || val.includes('l key')) {
+            resultEl.textContent = 'Correct: Press the L key.';
+            resultEl.style.color = '#4caf50';
+          } else {
+            resultEl.textContent = 'Hint: One of the splash tips mentions this.';
+            resultEl.style.color = '#ff9800';
+          }
+        });
+      });
+    </script>
   </body>
-  </html>
+</html>
 
 
 
