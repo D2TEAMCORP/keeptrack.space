@@ -2,6 +2,7 @@ import { KeepTrackApiEvents } from '@app/interfaces';
 import { keepTrackApi } from '@app/keepTrackApi';
 import { openColorbox } from '@app/lib/colorbox';
 import helpPng from '@public/img/icons/help.png';
+import { settingsManager } from '@app/settings/settings';
 
 import { KeepTrackPlugin } from '../KeepTrackPlugin';
 
@@ -21,7 +22,8 @@ export class TrainingPlugin extends KeepTrackPlugin {
   }
 
   bottomIconCallback = () => {
-    openColorbox('/training/index.html');
+    const url = `${settingsManager.installDirectory}training/index.html`;
+    openColorbox(url);
   };
 
   addJs(): void {

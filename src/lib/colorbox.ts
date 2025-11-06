@@ -122,13 +122,30 @@ const setupIframeColorbox_ = (url: string) => {
 
     return;
   }
-  (<HTMLIFrameElement>getEl('colorbox-iframe')).style.display = 'block';
+  const iframe = <HTMLIFrameElement>getEl('colorbox-iframe');
+  iframe.style.display = 'block';
   // Catch failures to load
   (<HTMLImageElement>getEl('colorbox-img')).onerror = () => {
     errorManagerInstance.warn(`Failed to load: ${url}`);
     closeColorbox();
   };
-  (<HTMLIFrameElement>getEl('colorbox-iframe')).src = url;
+  // Add error handling for iframe
+  iframe.onerror = () => {
+    errorManagerInstance.warn(`Failed to load iframe: ${url}`);
+  };
+  iframe.onload = () => {
+    try {
+      // Try to access iframe content to verify it loaded
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) {
+        errorManagerInstance.debug(`Iframe loaded but content not accessible: ${url}`);
+      }
+    } catch (e) {
+      // Cross-origin or other access issue - this is normal for external URLs
+      errorManagerInstance.debug(`Cannot access iframe content (may be cross-origin): ${url}`);
+    }
+  };
+  iframe.src = url;
   (<HTMLImageElement>getEl('colorbox-img')).style.display = 'none';
 };
 
