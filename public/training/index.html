@@ -24,12 +24,14 @@
         padding: 20px;
         line-height: 1.6;
         min-height: 100vh;
+        position: relative;
       }
       .container {
         max-width: 800px;
         margin: 0 auto;
         background-color: #2a2a2a;
         padding: 20px;
+        padding-top: 100px;
         border-radius: 8px;
         min-height: 200px;
       }
@@ -107,9 +109,22 @@
       p {
         margin-bottom: 10px;
       }
+      .logo-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+      }
+      .logo-container img {
+        height: 60px;
+        width: auto;
+      }
     </style>
   </head>
   <body>
+    <div class="logo-container">
+      <img src="/img/ehs-logo.png" alt="EHS Logo" />
+    </div>
     <div class="container">
       <h5>Training</h5>
       <div class="course-list">
