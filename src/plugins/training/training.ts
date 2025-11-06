@@ -20,11 +20,11 @@ export class TrainingPlugin extends KeepTrackPlugin {
     super.addHtml();
   }
 
-  addJs(): void {
-    this.bottomIconCallback = () => {
-      openColorbox('/training/index.html');
-    };
+  bottomIconCallback = () => {
+    openColorbox('/training/index.html');
+  };
 
+  addJs(): void {
     super.addJs();
 
     keepTrackApi.register({

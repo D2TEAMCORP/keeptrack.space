@@ -88,6 +88,7 @@ export class SettingsManager {
     timelineAlt: true,
     transponderChannelData: true,
     calculator: true,
+    training: true,
   };
 
   static preserveSettings() {
