@@ -76,6 +76,7 @@ const settingsOverride = {
     timelineAlt: true,
     transponderChannelData: true,
     calculator: true,
+    training: true,
   },
   /*
    * searchLimit: 150,

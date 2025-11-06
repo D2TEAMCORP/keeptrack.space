@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Training</title>
+    <link rel="stylesheet" href="/css/materialize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body { padding: 12px; }
+      .course-list { margin-bottom: 16px; }
+      .lesson { display: none; }
+      .lesson.active { display: block; }
+      .exercise { margin-top: 12px; padding: 12px; border: 1px solid var(--color-dark-border); border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h5>Training</h5>
+      <div class="course-list">
+        <div class="input-field col s12">
+          <select id="course-select">
+            <option value="intro" selected>Introduction to KeepTrack</option>
+            <option value="sensors">Sensors and FOV</option>
+            <option value="orbits">Orbits and Timelines</option>
+          </select>
+          <label>Course</label>
+        </div>
+      </div>
+
+      <div id="lesson-intro" class="lesson active">
+        <h6>Welcome</h6>
+        <p>This course introduces the UI, basic navigation, and core concepts.</p>
+        <div class="exercise">
+          <b>Exercise:</b>
+          <p>Which key toggles the help menu?</p>
+          <div class="input-field"><input id="q1" type="text" placeholder="Your answer" /></div>
+          <button id="q1-submit" class="btn btn-ui">Check</button>
+          <p id="q1-result"></p>
+        </div>
+      </div>
+
+      <div id="lesson-sensors" class="lesson">
+        <h6>Sensors and FOV</h6>
+        <p>Learn how to select sensors, view FOV, and compute look angles.</p>
+        <div class="exercise">
+          <b>Exercise:</b>
+          <p>Name the menu that shows look angles.</p>
+          <div class="input-field"><input id="q2" type="text" placeholder="Your answer" /></div>
+          <button id="q2-submit" class="btn btn-ui">Check</button>
+          <p id="q2-result"></p>
+        </div>
+      </div>
+
+      <div id="lesson-orbits" class="lesson">
+        <h6>Orbits and Timelines</h6>
+        <p>Understand orbit visualization and timeline features.</p>
+        <div class="exercise">
+          <b>Exercise:</b>
+          <p>Which key toggles satellite orbits?</p>
+          <div class="input-field"><input id="q3" type="text" placeholder="Your answer" /></div>
+          <button id="q3-submit" class="btn btn-ui">Check</button>
+          <p id="q3-result"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/materialize.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
+
+

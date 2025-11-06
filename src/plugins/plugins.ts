@@ -69,6 +69,7 @@ import { VideoDirectorPlugin } from './video-director/video-director';
 import { WatchlistPlugin } from './watchlist/watchlist';
 import { WatchlistOverlay } from './watchlist/watchlist-overlay';
 import { Calculator } from './calculator/calculator';
+import { TrainingPlugin } from './training/training';
 
 export type KeepTrackPlugins = {
   transponderChannelData?: boolean;
@@ -128,6 +129,7 @@ export type KeepTrackPlugins = {
   timeline?: boolean;
   timelineAlt?: boolean;
   calculator?: boolean;
+  training?: boolean;
 };
 
 // Register all core modules
@@ -184,6 +186,7 @@ export const loadPlugins = (keepTrackApi: KeepTrackApi, plugins: KeepTrackPlugin
       { init: () => new ScreenRecorder().init(), enabled: plugins.screenRecorder },
       { init: () => new AnalysisMenu().init(), enabled: plugins.analysis },
       { init: () => new Calculator().init(), enabled: plugins.calculator },
+      { init: () => new TrainingPlugin().init(), enabled: plugins.training },
       /*
        * { plugin: eciPlotsPlugin, enabled: plugins.plotAnalysis },
        * { plugin: ecfPlotsPlugin, enabled: plugins.plotAnalysis },
