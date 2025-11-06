@@ -39,7 +39,7 @@ files.forEach((file) => {
   }
 });
 
-['audio', 'css', 'data', 'img', 'meshes', 'res', 'settings', 'simulation', 'textures', 'tle'].forEach((dir) => {
+['audio', 'css', 'data', 'img', 'meshes', 'res', 'settings', 'simulation', 'textures', 'tle', 'training'].forEach((dir) => {
   cpSync(`public/${dir}`, `dist/${dir}`, { recursive: true, preserveTimestamps: true });
 });
 
