@@ -1,7 +1,7 @@
 import { KeepTrackApiEvents } from '@app/interfaces';
 import { keepTrackApi } from '@app/keepTrackApi';
 import { openColorbox } from '@app/lib/colorbox';
-import ehsLogoPng from '@public/img/ehs-logo.png';
+import logoPng from '@public/img/logo.png';
 import { settingsManager } from '@app/settings/settings';
 
 import { KeepTrackPlugin } from '../KeepTrackPlugin';
@@ -10,7 +10,7 @@ export class TrainingPlugin extends KeepTrackPlugin {
   readonly id = 'TrainingPlugin';
   protected dependencies_ = [];
 
-  bottomIconImg = ehsLogoPng;
+  bottomIconImg = logoPng;
   bottomIconLabel = 'EHS Training';
   bottomIconElementName = 'training-bottom-icon';
 
