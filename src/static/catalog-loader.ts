@@ -547,13 +547,19 @@ export class CatalogLoader {
         if (response.ok) {
           return response.json();
         }
-        errorManagerInstance.warn('Error loading vimpel.json');
+        // Only show warning if JSC catalog is enabled, otherwise silently fail
+        if (settingsManager.isEnableJscCatalog) {
+          errorManagerInstance.debug('Error loading vimpel.json');
+        }
 
         return [];
 
       })
       .catch(() => {
-        errorManagerInstance.warn('Error loading vimpel.json');
+        // Only show warning if JSC catalog is enabled, otherwise silently fail
+        if (settingsManager.isEnableJscCatalog) {
+          errorManagerInstance.debug('Error loading vimpel.json');
+        }
       });
   }
 
