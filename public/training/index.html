@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Training</title>
+    <title>EHS Training</title>
     <style>
       * {
         box-sizing: border-box;
@@ -26,89 +26,6 @@
         min-height: 100vh;
         position: relative;
       }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: #2a2a2a;
-        padding: 20px;
-        padding-top: 100px;
-        border-radius: 8px;
-        min-height: 200px;
-      }
-      h5 {
-        color: #fff;
-        margin-bottom: 20px;
-        font-size: 24px;
-      }
-      h6 {
-        color: #fff;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        font-size: 18px;
-      }
-      .course-list {
-        margin-bottom: 20px;
-      }
-      select {
-        width: 100%;
-        padding: 10px;
-        background-color: #3a3a3a;
-        color: #e0e0e0;
-        border: 1px solid #555;
-        border-radius: 4px;
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-      .lesson {
-        display: none;
-      }
-      .lesson.active {
-        display: block;
-      }
-      .exercise {
-        margin-top: 20px;
-        padding: 15px;
-        border: 1px solid #555;
-        border-radius: 4px;
-        background-color: #333;
-      }
-      .exercise b {
-        color: #4a9eff;
-        display: block;
-        margin-bottom: 10px;
-      }
-      input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #3a3a3a;
-        color: #e0e0e0;
-        border: 1px solid #555;
-        border-radius: 4px;
-        font-size: 14px;
-        margin-bottom: 10px;
-      }
-      button {
-        padding: 10px 20px;
-        background-color: #4a9eff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        margin-top: 10px;
-      }
-      button:hover {
-        background-color: #3a8eef;
-      }
-      #q1-result, #q2-result, #q3-result {
-        margin-top: 10px;
-        padding: 10px;
-        border-radius: 4px;
-        min-height: 20px;
-      }
-      p {
-        margin-bottom: 10px;
-      }
       .logo-container {
         position: absolute;
         top: 20px;
@@ -119,6 +36,130 @@
         height: 60px;
         width: auto;
       }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #2a2a2a;
+        padding: 30px;
+        padding-top: 100px;
+        border-radius: 8px;
+        min-height: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      h5 {
+        color: #fff;
+        margin-bottom: 30px;
+        font-size: 28px;
+        text-align: center;
+        border-bottom: 2px solid #4a9eff;
+        padding-bottom: 15px;
+      }
+      .module-selector, .topic-selector {
+        margin-bottom: 25px;
+      }
+      .module-selector label, .topic-selector label {
+        display: block;
+        color: #4a9eff;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+      select {
+        width: 100%;
+        padding: 12px;
+        background-color: #3a3a3a;
+        color: #e0e0e0;
+        border: 2px solid #555;
+        border-radius: 6px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        transition: border-color 0.3s;
+      }
+      select:hover {
+        border-color: #4a9eff;
+      }
+      select:focus {
+        outline: none;
+        border-color: #4a9eff;
+        box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
+      }
+      .content-section {
+        display: none;
+        animation: fadeIn 0.3s ease-in;
+      }
+      .content-section.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .section-title {
+        color: #4a9eff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #4a9eff;
+      }
+      .description-box, .exercise-box, .challenge-box {
+        background-color: #333;
+        padding: 20px;
+        border-left: 4px solid #4a9eff;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .description-box {
+        border-left-color: #4a9eff;
+      }
+      .exercise-box {
+        border-left-color: #4caf50;
+      }
+      .challenge-box {
+        border-left-color: #ff9800;
+      }
+      .box-title {
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+      .box-title::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .description-box .box-title::before {
+        background-color: #4a9eff;
+      }
+      .exercise-box .box-title::before {
+        background-color: #4caf50;
+      }
+      .challenge-box .box-title::before {
+        background-color: #ff9800;
+      }
+      .box-content {
+        color: #e0e0e0;
+        line-height: 1.8;
+      }
+      .box-content p {
+        margin-bottom: 10px;
+      }
+      .box-content p:last-child {
+        margin-bottom: 0;
+      }
+      .empty-state {
+        text-align: center;
+        padding: 40px;
+        color: #888;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
@@ -126,110 +167,211 @@
       <img src="/img/logo.png" alt="EHS Logo" />
     </div>
     <div class="container">
-      <h5>Training</h5>
-      <div class="course-list">
-        <select id="course-select">
-          <option value="intro" selected>Introduction to KeepTrack</option>
-          <option value="sensors">Sensors and FOV</option>
-          <option value="orbits">Orbits and Timelines</option>
+      <h5>EHS Training</h5>
+      
+      <div class="module-selector">
+        <label for="module-select">Select Module:</label>
+        <select id="module-select">
+          <option value="">-- Choose a Module --</option>
+          <option value="identifiers">Module: Identifiers</option>
+          <option value="orbit-data">Module: Orbit Data</option>
         </select>
       </div>
 
-      <div id="lesson-intro" class="lesson active">
-        <h6>Welcome</h6>
-        <p>This course introduces the UI, basic navigation, and core concepts.</p>
-        <div class="exercise">
-          <b>Exercise:</b>
-          <p>Which key toggles the help menu?</p>
-          <input id="q1" type="text" placeholder="Your answer" />
-          <button id="q1-submit">Check</button>
-          <p id="q1-result"></p>
-        </div>
+      <div class="topic-selector" id="topic-selector" style="display: none;">
+        <label for="topic-select">Select Topic:</label>
+        <select id="topic-select">
+          <option value="">-- Choose a Topic --</option>
+        </select>
       </div>
 
-      <div id="lesson-sensors" class="lesson">
-        <h6>Sensors and FOV</h6>
-        <p>Learn how to select sensors, view FOV, and compute look angles.</p>
-        <div class="exercise">
-          <b>Exercise:</b>
-          <p>Name the menu that shows look angles.</p>
-          <input id="q2" type="text" placeholder="Your answer" />
-          <button id="q2-submit">Check</button>
-          <p id="q2-result"></p>
-        </div>
-      </div>
-
-      <div id="lesson-orbits" class="lesson">
-        <h6>Orbits and Timelines</h6>
-        <p>Understand orbit visualization and timeline features.</p>
-        <div class="exercise">
-          <b>Exercise:</b>
-          <p>Which key toggles satellite orbits?</p>
-          <input id="q3" type="text" placeholder="Your answer" />
-          <button id="q3-submit">Check</button>
-          <p id="q3-result"></p>
-        </div>
+      <div id="content-area">
+        <div class="empty-state">Please select a module and topic to begin.</div>
       </div>
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const courseSelect = document.getElementById('course-select');
-        const lessons = {
-          intro: document.getElementById('lesson-intro'),
-          sensors: document.getElementById('lesson-sensors'),
-          orbits: document.getElementById('lesson-orbits'),
-        };
-
-        const showLesson = (key) => {
-          Object.values(lessons).forEach((el) => el.classList.remove('active'));
-          (lessons[key] || lessons.intro).classList.add('active');
-        };
-
-        courseSelect.addEventListener('change', (e) => {
-          showLesson(e.target.value);
-        });
-
-        // Simple answer checks
-        document.getElementById('q1-submit').addEventListener('click', () => {
-          const val = (document.getElementById('q1').value || '').toLowerCase();
-          const resultEl = document.getElementById('q1-result');
-          if (val.includes('shift') && (val.includes('f1') || val.includes('f 1'))) {
-            resultEl.textContent = 'Correct: Shift + F1 opens help.';
-            resultEl.style.color = '#4caf50';
-          } else {
-            resultEl.textContent = 'Hint: Check the splash tips about help.';
-            resultEl.style.color = '#ff9800';
+      const trainingData = {
+        identifiers: {
+          title: "Module: Identifiers",
+          description: "Understanding identifiers is essential for tracking, referencing, and comparing orbital objects across different catalogs. The contemporary ecosystem of space surveillance relies on multiple naming schemes, each influenced by institutional history, geopolitical data sharing norms, and the evolution of tracking accuracy.",
+          topics: {
+            "cospar": {
+              title: "1. COSPAR",
+              description: "The COSPAR designation encodes the launch year, launch sequence for that year, and the specific payload identified from the launch event. Scholars often highlight that COSPAR identifiers foreground the event rather than the platform, reflecting a classification logic rooted in the chronology of human activity in space.",
+              exercise: "Locate a satellite of interest and view its COSPAR ID. Track how the naming relates to its launch history.",
+              challenge: "How does the structure of the COSPAR identifier reflect the historical emphasis on launch chronology rather than operational identity?"
+            },
+            "norad": {
+              title: "2. NORAD",
+              description: "NORAD catalog numbers offer a continuous numeric sequence assigned as objects are tracked. The debate in SSA literature often concerns whether sequential numbering obscures relational context, as it is agnostic to launch grouping or mission category.",
+              exercise: "Search for a satellite and observe its NORAD ID. Compare two satellites launched on the same date and note how the NORAD numbers differ.",
+              challenge: "Why might analysts prefer COSPAR for historical reference and NORAD for real-time catalog management?"
+            },
+            "alternative-name": {
+              title: "3. Alternative Name",
+              description: "Many orbital objects carry operational or commercial names. These labels can shift over time due to ownership, mission repurposing, or national program rebranding.",
+              exercise: "Identify a satellite with more than one name in the platform. Trace documentation or public reporting that reflects the name change.",
+              challenge: "How might reliance on commercial names lead to ambiguity in multinational operations?"
+            },
+            "alternative-id": {
+              title: "4. Alternative ID",
+              description: "Alt ID fields may reflect catalog entries maintained by regional agencies, defense networks, or academic consortia. They serve as a bridge across heterogeneous tracking databases.",
+              exercise: "Compare the Alt ID listed for a satellite to its NORAD number. Note whether the numbering appears internally consistent or context-dependent.",
+              challenge: "What problem does the existence of an Alt ID suggest about the standardization of orbital catalogs?"
+            },
+            "source": {
+              title: "5. Source",
+              description: "The source field indicates where the orbital data originated. Discourse in SSA stresses the difficulty of establishing data provenance when sources differ in sensor quality, update frequency, and analytic methodology.",
+              exercise: "Select five satellites and compare their data sources. Observe whether some operators rely on governmental versus commercial feeds.",
+              challenge: "In what ways does data source variability influence confidence in tracking accuracy?"
+            },
+            "confidence": {
+              title: "6. Confidence",
+              description: "Confidence levels express how reliable the published tracking data is, acknowledging the inherent uncertainty of orbital estimation. Confidence fluctuates with sensor coverage, orbital regime, and atmospheric drag models.",
+              exercise: "Find a recently maneuvered satellite and examine how its confidence value compares to a stable GEO communications satellite.",
+              challenge: "Why might confidence be more variable in LEO than GEO?"
+            }
           }
+        },
+        "orbit-data": {
+          title: "Module: Orbit Data",
+          description: "Orbit parameters represent the geometry and dynamical evolution of a satellite's motion. They encode both physical forces (gravity, drag) and human choices (injection orbit, station keeping). This set of values enables predictive modeling and trajectory interpretation.",
+          topics: {
+            "apogee": {
+              title: "1. Apogee",
+              description: "The point furthest from Earth in an orbit. It reflects the outer boundary of gravitational influence for that specific orbital path.",
+              exercise: "Compare apogees for two satellites in different orbital regimes. Note how apogee distance influences coverage patterns.",
+              challenge: "Why might a satellite designed for broad-area communication prioritize a higher apogee?"
+            },
+            "perigee": {
+              title: "2. Perigee",
+              description: "The closest orbital distance to Earth, strongly influencing atmospheric drag and orbital lifetime.",
+              exercise: "Select a satellite with a low perigee and monitor changes over time.",
+              challenge: "How does perigee level shape decay rate in LEO?"
+            },
+            "inclination": {
+              title: "3. Inclination",
+              description: "The tilt of the orbit relative to Earth's equator. Inclination defines ground-track reach and coverage latitudes.",
+              exercise: "Explore polar versus equatorial satellites and compare inclinations.",
+              challenge: "Why do Earth observation satellites often adopt near-polar inclinations?"
+            },
+            "eccentricity": {
+              title: "4. Eccentricity",
+              description: "A measure of orbital shape, ranging from circular to highly elongated. Variations in eccentricity change how long an object dwells at different points in its orbit.",
+              exercise: "Identify a satellite in a Molniya orbit and examine its eccentricity.",
+              challenge: "How does eccentricity affect signal availability over high latitudes?"
+            },
+            "raan": {
+              title: "5. Right Ascension of Ascending Node (RAAN)",
+              description: "The angular position of the orbit's ascending node relative to a reference frame. Analysts use RAAN to understand orbit alignment among constellations.",
+              exercise: "Compare RAAN values in a multi-sat constellation.",
+              challenge: "Why does RAAN alignment matter for coordinated coverage?"
+            },
+            "argument-of-perigee": {
+              title: "6. Argument of Perigee",
+              description: "Specifies where the perigee point lies in the orbital plane. This influences dwell time near specific ground regions.",
+              exercise: "Find a satellite with a high eccentricity and examine how its argument of perigee affects its regional service footprint.",
+              challenge: "How does argument of perigee help shape persistent coverage strategies?"
+            },
+            "latitude-longitude-altitude": {
+              title: "7. Latitude, 8. Longitude, 9. Altitude",
+              description: "These values locate the satellite at a specific point in time. They emerge from orbital propagation rather than defining the orbit itself.",
+              exercise: "Track live satellite movement and observe how these coordinates evolve across multiple passes.",
+              challenge: "Why are latitude, longitude, and altitude insufficient for long-term orbit prediction?"
+            },
+            "period": {
+              title: "10. Period",
+              description: "The time needed to complete one orbit. Period reflects gravitational parameters and the size of the orbital ellipse.",
+              exercise: "Compare orbital periods of a GEO satellite, a LEO satellite, and a MEO navigation satellite.",
+              challenge: "How does orbital period correlate with mission design choices?"
+            },
+            "velocity": {
+              title: "11. Velocity",
+              description: "Orbital velocity varies with altitude due to gravitational gradients. Lower orbits require higher velocities to maintain stable flight.",
+              exercise: "Observe how velocity changes between perigee and apogee for an eccentric orbit.",
+              challenge: "Why does an object move faster at perigee than apogee?"
+            },
+            "age-of-ephemeris": {
+              title: "12. Age of Ephemeris (Age of GP)",
+              description: "Indicates how long it has been since the last orbital data update. Longer ages imply increased uncertainty.",
+              exercise: "Examine the Age of GP for recently maneuvered versus long-stable satellites.",
+              challenge: "How does the age of data influence decision-making in collision avoidance?"
+            }
+          }
+        }
+      };
+
+      const moduleSelect = document.getElementById('module-select');
+      const topicSelect = document.getElementById('topic-select');
+      const topicSelector = document.getElementById('topic-selector');
+      const contentArea = document.getElementById('content-area');
+
+      moduleSelect.addEventListener('change', (e) => {
+        const moduleKey = e.target.value;
+        if (!moduleKey) {
+          topicSelector.style.display = 'none';
+          contentArea.innerHTML = '<div class="empty-state">Please select a module and topic to begin.</div>';
+          return;
+        }
+
+        const module = trainingData[moduleKey];
+        if (!module) return;
+
+        // Populate topic dropdown
+        topicSelect.innerHTML = '<option value="">-- Choose a Topic --</option>';
+        Object.keys(module.topics).forEach((key) => {
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = module.topics[key].title;
+          topicSelect.appendChild(option);
         });
 
-        document.getElementById('q2-submit').addEventListener('click', () => {
-          const val = (document.getElementById('q2').value || '').toLowerCase();
-          const resultEl = document.getElementById('q2-result');
-          if (val.includes('look') && val.includes('angles')) {
-            resultEl.textContent = 'Correct: Look Angles.';
-            resultEl.style.color = '#4caf50';
-          } else {
-            resultEl.textContent = 'Hint: Explore the bottom menus related to sensors.';
-            resultEl.style.color = '#ff9800';
-          }
-        });
+        topicSelector.style.display = 'block';
+        contentArea.innerHTML = '<div class="empty-state">Please select a topic to view content.</div>';
+      });
 
-        document.getElementById('q3-submit').addEventListener('click', () => {
-          const val = (document.getElementById('q3').value || '').toLowerCase();
-          const resultEl = document.getElementById('q3-result');
-          if (val === 'l' || val.includes('l key')) {
-            resultEl.textContent = 'Correct: Press the L key.';
-            resultEl.style.color = '#4caf50';
-          } else {
-            resultEl.textContent = 'Hint: One of the splash tips mentions this.';
-            resultEl.style.color = '#ff9800';
-          }
-        });
+      topicSelect.addEventListener('change', (e) => {
+        const moduleKey = moduleSelect.value;
+        const topicKey = e.target.value;
+        
+        if (!moduleKey || !topicKey) {
+          contentArea.innerHTML = '<div class="empty-state">Please select a topic to view content.</div>';
+          return;
+        }
+
+        const module = trainingData[moduleKey];
+        const topic = module.topics[topicKey];
+        
+        if (!topic) return;
+
+        contentArea.innerHTML = `
+          <div class="content-section active">
+            <div class="section-title">${topic.title}</div>
+            
+            <div class="description-box">
+              <div class="box-title">Description</div>
+              <div class="box-content">
+                <p>${topic.description}</p>
+              </div>
+            </div>
+
+            <div class="exercise-box">
+              <div class="box-title">Exercise in KeepTrack</div>
+              <div class="box-content">
+                <p>${topic.exercise}</p>
+              </div>
+            </div>
+
+            <div class="challenge-box">
+              <div class="box-title">Challenge Question</div>
+              <div class="box-content">
+                <p>${topic.challenge}</p>
+              </div>
+            </div>
+          </div>
+        `;
       });
     </script>
   </body>
 </html>
-
-
-
